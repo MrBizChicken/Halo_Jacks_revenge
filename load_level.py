@@ -65,7 +65,6 @@ class Load_level():
                     player_group.add(player.Player(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 
                 if item == "pf":
-                    print("made object")
 
                     floor_group.add(floor.Floor(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 

@@ -73,6 +73,25 @@ class Player(pygame.sprite.Sprite):
             self.jump()
             self.jump_counter += 1
 
+        if keys[pygame.K_c]:
+            self.speed = 1
+            self.lift = -0.5
+            self.max_vel = -3
+
+        else:
+            self.speed = 5
+            self.lift = -1
+            self.max_vel = -7
+
+
+
+
+
+
+
+
+
+
 
     def jump(self):
         if self.can_jump == True:
