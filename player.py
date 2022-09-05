@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.width = 64
         self.height = 64
         self.speed = 5
+        self.x_speed = 0
         self.image = pygame.Surface([self.width, self.height])
         self.image.fill((255, 255 ,255))
         self.rect = self.image.get_rect()
@@ -26,6 +27,8 @@ class Player(pygame.sprite.Sprite):
 
         self.can_jump = True
         self.jump_counter = 0
+        self.clock = pygame.time.Clock()
+        self.time_passed = 0
 
 
 
@@ -54,34 +57,46 @@ class Player(pygame.sprite.Sprite):
 
 
 
-        if keys[pygame.K_LEFT]:
-
-            if self.rect.x > 0:
-                self.rect.x += -self.speed
-
-
 
 
         if keys[pygame.K_RIGHT]:
-            if self.rect.right < GAME_HEIGHT:
-                self.rect.x += self.speed
+            self.x_speed += 3000 * self.time_passed
 
 
+        if keys[pygame.K_LEFT]:
+            self.x_speed -= 3000 * self.time_passed
 
+
+        self.x_speed *= 0.95**(100 * self.time_passed)
+
+        self.rect.x += self.x_speed * self.time_passed
+
+        self.time_passed = self.clock.tick() / 1000
 
         if keys[pygame.K_SPACE]:
             self.jump()
             self.jump_counter += 1
 
-        if keys[pygame.K_c]:
-            self.speed = 1
-            self.lift = -0.5
-            self.max_vel = -3
-
-        else:
-            self.speed = 5
-            self.lift = -1
-            self.max_vel = -7
+        # if keys[pygame.K_c]:
+        #     self.x_speed = 1
+        #     self.lift = -0.5
+        #     self.max_vel = -3
+        #
+        # else:
+        #     self.x_speed = 0
+        #     self.lift = -1
+        #     self.max_vel = -7
+        #
+        #
+        # if keys[pygame.K_LSHIFT]:
+        #     self.x_speed = 8
+        #     self.lift = -2
+        #     self.max_vel = -9
+        #
+        # else:
+        #     self.x_speed = 0
+        #     self.lift = -1
+        #     self.max_vel = -7
 
 
 
