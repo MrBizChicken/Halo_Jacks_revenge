@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.image.fill((255, 255 ,255))
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
-        self.lift = -1
+        self.lift = -1.5
         self.grav = 0.3
         self.vel = 0
         self.max_vel = -7
@@ -67,7 +67,7 @@ class Player(pygame.sprite.Sprite):
             self.x_speed -= 3000 * self.time_passed
 
 
-        self.x_speed *= 0.95**(100 * self.time_passed)
+        self.x_speed *= 0.95 ** (100 * self.time_passed)
 
         self.rect.x += self.x_speed * self.time_passed
 
