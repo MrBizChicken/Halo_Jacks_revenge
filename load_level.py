@@ -3,6 +3,10 @@ import pygame
 import csv
 import player
 import floor
+import wall
+import portal_1
+import portal_2
+import test_enemy
 
 
 
@@ -45,11 +49,17 @@ class Load_level():
     def load_level(self, level, main_group):
         player_group = main_group.player_group
         floor_group = main_group.floor_group
+        wall_group = main_group.wall_group
+        portal_group = main_group.portal_group
+        portal1_group = main_group.portal1_group
+        portal2_group = main_group.portal2_group
+        test_enemy_group = main_group.test_enemy_group
 
-
-
+        test_enemy_group.empty()
         player_group.empty()
+        portal_group.empty()
         floor_group.empty()
+        wall_group.empty()
 
 
         map_tiles = self.get_list(self.level[level])
@@ -66,7 +76,28 @@ class Load_level():
 
                 if item == "pf":
 
+
                     floor_group.add(floor.Floor(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
+                if item == "w":
+
+
+                    wall_group.add(wall.Wall(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
+                if item == "p1":
+
+
+                    portal1_group.add(portal_1.Portal1(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
+                if item == "p2":
+
+
+                    portal2_group.add(portal_2.Portal2(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
+
+                if item == "e":
+
+
+                    test_enemy_group.add(test_enemy.Test_enemy(col * BLOCK_SIZE, row * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE))
 
 
 
@@ -74,9 +105,14 @@ class Load_level():
 
         player_group = main_group.player_group
         floor_group = main_group.floor_group
+        wall_group = main_group.wall_group
+        portal_group = main_group.portal_group
+        test_enemy_group = main_group.test_enemy_group
 
-
-
+        test_enemy_group.empty()
         player_group.empty()
+        portal_group.empty()
         floor_group.empty()
+        wall_group.empty()
+
         self.load_level(self.level_num, main_group)
